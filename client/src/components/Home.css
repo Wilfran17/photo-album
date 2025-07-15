@@ -1,0 +1,103 @@
+.main {
+  max-width: 75rem;                  /* Maks bredde på innholdet */
+  padding: 3em 1.5em;                /* Luft inni containeren */
+  background: #000;                  /* Svart bakgrunn for kontrast */
+}
+
+.cards.carousel {
+  position: relative;               /* Gjør det mulig å posisjonere kort */
+  width: 700px;                     /* Bredde på karusell-området */
+  height: 500px;                    /* Høyde på karusellen */
+  transform-style: preserve-3d;     /* Aktiverer 3D-transforms på barneelementer */
+  cursor: grab;                     /* Dra-hånd når man holder over */
+  user-select: none;                /* Hindrer markering av tekst/bilder */
+  perspective: 50000px;             /* Hvor langt unna brukeren kameraet "står" */
+  margin: 0 auto;                   /* Sentrerer horisontalt */
+}
+
+.cards.carousel:active {
+  cursor: grabbing;                 /* Endrer peker når du drar karusellen */
+}
+
+.card {
+  position: absolute;               /* Lar kortet plasseres fritt inne i karusellen */
+  top: 30%;                         /* Justerer vertikal plassering av kortet */
+  left: 50%;                        /* Horisontalt midt i karusellen */
+  width: 400px;                     /* Bredde på kortet */
+  height: 400px;                    /* Høyde på kortet */
+  margin: -150px 0 0 -150px;        /* Flytter kortet så midten havner på topp/venstre punkt */
+  border-radius: 20px;              /* Runde hjørner på kortet */
+  overflow: hidden;                 /* Skjuler det som går utenfor kantene */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);  /* Lys glød rundt kortet */
+  background: #222;                 /* Mørk bakgrunn hvis bilde ikke lastes */
+  border: 1px solid #fff;           /* Tynn hvit kantlinje */
+  transform-style: preserve-3d;     /* Bevarer 3D-transforms i barnet (hvis brukt) */
+  transition: transform 0.3s ease;  /* Smooth transform-animasjon */
+}
+
+.card img {
+  width: 100%;                      /* Fyller hele kortets bredde */
+  height: 100%;                     /* Fyller hele kortets høyde */
+  object-fit: cover;                /* Bildet dekker hele kortet (kan kutte litt) */
+  display: block;                   /* Fjerner ekstra whitespace */
+  border-radius: 15px;              /* Runde hjørner på selve bildet */
+  pointer-events: none;             /* Hindrer museklikk/drag på bildet */
+  user-select: none;                /* Hindrer markering av bildet */
+}
+
+/* Hindrer visuelle effekter ved hover/focus */
+.card:hover,
+.card:focus {
+  transform: none !important;       /* Sørger for at transform ikke endres ved hover */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Litt mer glød når musen er over */
+}
+
+.carousel-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 0.5rem;
+}
+
+.carousel-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: #888;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-button:hover {
+  background-color: #fff;
+}
+
+.carousel-button.active {
+  background-color: #fff;
+}
+
+/* ---------- Mobiltilpasning ---------- */
+@media (max-width: 768px) {
+  .cards.carousel {
+    width: 80vw;
+    height: 300px;
+    perspective: 50000px;
+  }
+
+  .card {
+    width: 50vw;
+    height: 60vw;
+    margin: -35vw 0 0 -35vw;
+    top: 50%;
+    left: 50%;
+  }
+
+  .card img {
+    border-radius: 12px;
+  }
+
+  .carousel-buttons {
+    margin-top: 1.5rem;
+  }
+}
